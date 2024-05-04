@@ -26,3 +26,13 @@ float TeacherDTO::getSalary() const {
 void TeacherDTO::setSalary(float salary) {
 	this->salary = salary;
 }
+
+ostream& operator<<(ostream& os, const shared_ptr<TeacherDTO> teacher) {
+    os << "[ID: " << teacher->getId()
+       << ", Nome: " << teacher->getName()
+       << ", Idade: " << teacher->getAge()
+       << ", Telefone: " << teacher->getPhone()
+       << ", Salario: " << teacher->getSalary()
+       << "]";
+    return os;
+}

@@ -24,8 +24,16 @@ public:
 
 private:
 	string teacherId;
-	vector<string> studentsRas;
-	map<string, double> studentGrades;
+    vector<string> studentsRas;
+    map<string, double> studentGrades;
+
+public:
+    const string &getTeacherId() const;
+    void setTeacherId(const string &teacherId);
+    const vector<string> &getStudentsRas() const;
+    void setStudentsRas(const vector<string> &studentsRas);
+    const map<string, double> &getStudentGrades() const;
+    void setStudentGrades(const map<string, double> &studentGrades);
 };
 
 #endif

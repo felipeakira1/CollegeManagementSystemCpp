@@ -250,15 +250,30 @@ void Controller::actionGetClassByCode()
 
 void Controller::actionAddTeacherToClass()
 {
-	cin.ignore();
-	string classCode;
-	cout << "Digite o codigo da turma: ";
-	getline(cin, classCode);
-
-	//verificar se turma existe e se nao ha nenhum professor
-	{
-
-	}
+    cin.ignore();
+    string classCode;
+    cout << "Digite o codigo da turma: ";
+    getline(cin, classCode);
+    shared_ptr<ClassDTO> class_ptr = classDAO->getById(classCode);
+    if(class_ptr != nullptr) {
+        if(class_ptr->getTeacherId() == "")
+        {
+            cout << "Turma valida e sem professor!" << endl;
+            string teacherId;
+            cout << "Digite o id do professor: ";
+            getline(cin, teacherId);
+            shared_ptr<TeacherDTO> teacher_ptr = teacherDAO->getById(teacherId);
+            if(teacher_ptr != nullptr) {
+                cout << teacher_ptr << endl;
+                class_ptr->setTeacherId(teacherId);
+                cout << "Professor adicionado com sucesso." << endl;
+            }
+        } else {
+            cout << "Turma já possui professor." << endl;
+        }
+    } else {
+        cout << "Turma nao encontrada." << endl;
+    }
 }
 
 void Controller::launchActions(string title, vector<string> menuItens,

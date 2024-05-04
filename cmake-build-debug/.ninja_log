@@ -1,0 +1,25 @@
+# ninja log v5
+15	867	7365489411920612	CMakeFiles/CollegeManagementSystemCpp.dir/src/dao/ClassDAO.cpp.obj	94aa9aae717977cc
+29	944	7365489412740447	CMakeFiles/CollegeManagementSystemCpp.dir/src/dao/TeacherDAO.cpp.obj	9d1977a56ffebeab
+22	1016	7365489413455390	CMakeFiles/CollegeManagementSystemCpp.dir/src/dao/StudentDAO.cpp.obj	66ea7fcd077e71f9
+5	1378	7365489416974967	CMakeFiles/CollegeManagementSystemCpp.dir/src/controller/Controller.cpp.obj	58c64df752227b88
+1016	1421	7365489417375016	CMakeFiles/CollegeManagementSystemCpp.dir/src/dto/Person.cpp.obj	6cbc033b6272e7d7
+1379	1489	7365489418175702	CMakeFiles/CollegeManagementSystemCpp.dir/src/dto/Semester.cpp.obj	8fce9d676dd49ff6
+870	1556	7365489418870471	CMakeFiles/CollegeManagementSystemCpp.dir/src/database/College.cpp.obj	796b4ad19deeb419
+945	1605	7365489419265462	CMakeFiles/CollegeManagementSystemCpp.dir/src/dto/ClassDTO.cpp.obj	1c2e6201c6824c70
+1556	1895	7365489422264886	CMakeFiles/CollegeManagementSystemCpp.dir/src/dto/TeacherDTO.cpp.obj	a45ab53c60c95c96
+1421	1904	7365489422299929	CMakeFiles/CollegeManagementSystemCpp.dir/src/dto/StudentDTO.cpp.obj	4d42c9507b96e61e
+1489	1976	7365489423079642	CMakeFiles/CollegeManagementSystemCpp.dir/src/dto/Subject.cpp.obj	ca689ddb89d445a7
+1605	2195	7365489425254213	CMakeFiles/CollegeManagementSystemCpp.dir/src/menu/Menu.cpp.obj	99eabf1b8f59b344
+1896	2230	7365489425624079	CMakeFiles/CollegeManagementSystemCpp.dir/src/system/SysInfo.cpp.obj	b3bb5bf91b1da529
+1904	2335	7365489426674300	CMakeFiles/CollegeManagementSystemCpp.dir/src/utils/Utils.cpp.obj	63fe952c516451b8
+1976	2498	7365489428307471	CMakeFiles/CollegeManagementSystemCpp.dir/src/Start.cpp.obj	568ad9ac1a003dc2
+2498	2846	7365489431752987	CollegeManagementSystemCpp.exe	4a90dd199df01bab
+18	1076	7365494731496760	CMakeFiles/CollegeManagementSystemCpp.dir/src/dao/ClassDAO.cpp.obj	94aa9aae717977cc
+32	1271	7365494732678055	CMakeFiles/CollegeManagementSystemCpp.dir/src/dao/TeacherDAO.cpp.obj	9d1977a56ffebeab
+25	1779	7365494738603520	CMakeFiles/CollegeManagementSystemCpp.dir/src/dao/StudentDAO.cpp.obj	66ea7fcd077e71f9
+1076	1915	7365494739623545	CMakeFiles/CollegeManagementSystemCpp.dir/src/database/College.cpp.obj	796b4ad19deeb419
+10	1920	7365494740068317	CMakeFiles/CollegeManagementSystemCpp.dir/src/controller/Controller.cpp.obj	58c64df752227b88
+1271	2124	7365494742133172	CMakeFiles/CollegeManagementSystemCpp.dir/src/dto/ClassDTO.cpp.obj	1c2e6201c6824c70
+1780	2383	7365494744783296	CMakeFiles/CollegeManagementSystemCpp.dir/src/Start.cpp.obj	568ad9ac1a003dc2
+2384	2725	7365494748151506	CollegeManagementSystemCpp.exe	4a90dd199df01bab

@@ -10,6 +10,8 @@
 
 #include "Person.h"
 #include <string>
+#include <memory>
+#include <iostream>
 using namespace std;
 
 class TeacherDTO : public Person
@@ -24,6 +26,7 @@ public:
 	void setId(const string &id);
 	float getSalary() const;
 	void setSalary(float salario);
+    friend ostream& operator<<(ostream& os, const shared_ptr<TeacherDTO> teacher);
 };
 
 #endif /* INCLUDE_DTO_TEACHERDTO_H_ */
