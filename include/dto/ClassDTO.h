@@ -22,7 +22,7 @@ using namespace std;
 
 class ClassDTO : public Semester, public Subject{
 public:
-	ClassDTO(string code, string name, string syllabus, int year, int semesterNumber);
+	ClassDTO(const string& code, const string& name, const string& syllabus, int year, int semesterNumber);
 	virtual ~ClassDTO();
 
 private:

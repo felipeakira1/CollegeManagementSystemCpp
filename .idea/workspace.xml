@@ -22,9 +22,22 @@
   <component name="ChangeListManager">
     <list default="true" id="24d0a26c-c809-4d4b-b4e8-42ba2f75f49f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/dto/StudentDTO.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/dto/StudentDTO.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CollegeManagementSystemCpp.dir/src/Start.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CollegeManagementSystemCpp.dir/src/Start.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CollegeManagementSystemCpp.dir/src/controller/Controller.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CollegeManagementSystemCpp.dir/src/controller/Controller.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CollegeManagementSystemCpp.dir/src/dao/ClassDAO.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CollegeManagementSystemCpp.dir/src/dao/ClassDAO.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CollegeManagementSystemCpp.dir/src/dao/StudentDAO.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CollegeManagementSystemCpp.dir/src/dao/StudentDAO.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CollegeManagementSystemCpp.dir/src/dao/TeacherDAO.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CollegeManagementSystemCpp.dir/src/dao/TeacherDAO.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CollegeManagementSystemCpp.dir/src/database/College.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CollegeManagementSystemCpp.dir/src/database/College.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CollegeManagementSystemCpp.dir/src/dto/ClassDTO.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CollegeManagementSystemCpp.dir/src/dto/ClassDTO.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CollegeManagementSystemCpp.dir/src/dto/StudentDTO.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CollegeManagementSystemCpp.dir/src/dto/StudentDTO.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CollegeManagementSystemCpp.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CollegeManagementSystemCpp.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/controller/Controller.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/controller/Controller.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/dto/ClassDTO.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/dto/ClassDTO.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controller/Controller.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/Controller.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dto/StudentDTO.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dto/StudentDTO.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dto/ClassDTO.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dto/ClassDTO.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

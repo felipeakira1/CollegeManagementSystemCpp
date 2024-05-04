@@ -22,6 +22,9 @@ Controller::Controller() {
 
     studentDAO->add(make_shared<StudentDTO>("Felipe Akira Nozaki", 20, "(14) 997080902", "172885", "Sistemas de Informação"));
 	teacherDAO->add(make_shared<TeacherDTO>("Juan Salamanca", 40, "(11) 1111111", "1", 5000));
+    classDAO->add(make_shared<ClassDTO>("SI300", "Programacao Orientad a Objetos I", "Ensino de POO", 2024, 1));
+    (classDAO->getById("SI300"))->addStudent("172885", 10);
+    (studentDAO->getById("172885"))->addClass("SI300");
 }
 
 Controller::~Controller() {}
@@ -279,8 +282,8 @@ void Controller::actionAddStudentToClass() {
 
 void Controller::actionReports()
 {
-    vector<string> menuReports{"Lista de estudantes de uma disciplina", "Media de notas de uma disciplina", "Voltar ao menu principal"};
-    vector<void (Controller::*)()> functions{&Controller::reportAverageGradesOfClass, &Controller::actionToDo};
+    vector<string> menuReports{"Lista de disciplinas de um estudante", "Media de notas de uma disciplina", "Voltar ao menu principal"};
+    vector<void (Controller::*)()> functions{&Controller::reportClassesOfStudent, &Controller::reportAverageGradesOfClass};
     launchActions("Menu relatorios", menuReports, functions);
 }
 
@@ -299,6 +302,21 @@ void Controller::reportAverageGradesOfClass() {
         cout << "A media da turma e: " << average << endl;
     } else {
         cout << "Turma nao encontrada." << endl;
+    }
+}
+
+void Controller::reportClassesOfStudent() {
+    string ra;
+    cout << "Digite o RA do estudante: ";
+    cin >> ra;
+    shared_ptr<StudentDTO> student_ptr = studentDAO->getById(ra);
+    if(student_ptr != nullptr){
+        vector<string> classes = student_ptr->getClasses();
+        for(const string& class_code : classes) {
+            cout << classDAO->getById(class_code) << endl;
+        }
+    } else {
+        cout << "Estudante nao encontrado." << endl;
     }
 }
 

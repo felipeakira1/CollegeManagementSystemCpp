@@ -7,7 +7,7 @@
 
 #include "../../include/dto/ClassDTO.h"
 
-ClassDTO::ClassDTO(string code, string name, string syllabus, int year, int semesterNumber) : Semester(year, semesterNumber), Subject(code, name, syllabus) {}
+ClassDTO::ClassDTO(const string& code, const string& name, const string& syllabus, int year, int semesterNumber) : Semester(year, semesterNumber), Subject(code, name, syllabus) {}
 
 ClassDTO::~ClassDTO() {
 	// TODO Auto-generated destructor stub
