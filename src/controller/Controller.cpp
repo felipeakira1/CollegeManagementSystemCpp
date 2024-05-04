@@ -282,9 +282,39 @@ void Controller::actionAddStudentToClass() {
 
 void Controller::actionReports()
 {
-    vector<string> menuReports{"Lista de disciplinas de um estudante", "Media de notas de uma disciplina", "Voltar ao menu principal"};
-    vector<void (Controller::*)()> functions{&Controller::reportClassesOfStudent, &Controller::reportAverageGradesOfClass};
+    vector<string> menuReports{"Lista de disciplinas de um estudante", "Lista de estudantes de uma disciplina", "Media de notas de uma disciplina", "Voltar ao menu principal"};
+    vector<void (Controller::*)()> functions{&Controller::reportClassesOfStudent, &Controller::reportStudentsOfClass, &Controller::reportAverageGradesOfClass};
     launchActions("Menu relatorios", menuReports, functions);
+}
+
+void Controller::reportClassesOfStudent() {
+    string ra;
+    cout << "Digite o RA do estudante: ";
+    cin >> ra;
+    shared_ptr<StudentDTO> student_ptr = studentDAO->getById(ra);
+    if(student_ptr != nullptr){
+        vector<string> classes = student_ptr->getClasses();
+        for(const string& class_code : classes) {
+            cout << classDAO->getById(class_code) << endl;
+        }
+    } else {
+        cout << "Estudante nao encontrado." << endl;
+    }
+}
+
+void Controller::reportStudentsOfClass() {
+    string code;
+    cout << "Digite o codigo da turma: ";
+    cin >> code;
+    shared_ptr<ClassDTO> class_ptr = classDAO->getById(code);
+    if(class_ptr != nullptr) {
+        map<string, double> studentGrades = class_ptr->getStudentGrades();
+        for(const pair<string, double> studentGrade: studentGrades) {
+            cout << studentDAO->getById(studentGrade.first) << endl;
+        }
+    } else {
+        cout << "Turma nao encontrada." << endl;
+    }
 }
 
 void Controller::reportAverageGradesOfClass() {
@@ -305,20 +335,6 @@ void Controller::reportAverageGradesOfClass() {
     }
 }
 
-void Controller::reportClassesOfStudent() {
-    string ra;
-    cout << "Digite o RA do estudante: ";
-    cin >> ra;
-    shared_ptr<StudentDTO> student_ptr = studentDAO->getById(ra);
-    if(student_ptr != nullptr){
-        vector<string> classes = student_ptr->getClasses();
-        for(const string& class_code : classes) {
-            cout << classDAO->getById(class_code) << endl;
-        }
-    } else {
-        cout << "Estudante nao encontrado." << endl;
-    }
-}
 
 void Controller::launchActions(string title, vector<string> menuItens,
 		vector<void (Controller::*)()> functions) {
@@ -342,4 +358,3 @@ void Controller::actionToDo(void)
 {
 	Utils::printMessage("Place holder function. Code was not written yet!\n");
 }
-
