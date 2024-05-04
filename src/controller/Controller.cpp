@@ -28,7 +28,7 @@ Controller::~Controller() {}
 
 void Controller::start() {
 	vector<string> menuItens{"Estudantes", "Professores", "Turmas", "Relatórios", "Ajuda", "Sair do programa:"};
-	vector<void (Controller::*)()> functions{&Controller::actionStudents, &Controller::actionTeachers, &Controller::actionClasses};
+	vector<void (Controller::*)()> functions{&Controller::actionStudents, &Controller::actionTeachers, &Controller::actionClasses, &Controller::actionReports};
 	launchActions("Menu Principal", menuItens, functions);
 }
 
@@ -271,6 +271,31 @@ void Controller::actionAddStudentToClass() {
         } else {
             cout << "Estudante não foi encontrado. " << endl;
         }
+    } else {
+        cout << "Turma nao encontrada." << endl;
+    }
+}
+
+void Controller::actionReports()
+{
+    vector<string> menuReports{"Lista de estudantes de uma disciplina", "Media de notas de uma disciplina", "Voltar ao menu principal"};
+    vector<void (Controller::*)()> functions{&Controller::reportAverageGradesOfClass, &Controller::actionToDo};
+    launchActions("Menu relatorios", menuReports, functions);
+}
+
+void Controller::reportAverageGradesOfClass() {
+    string code;
+    cout << "Digite o codigo da turma: ";
+    cin >> code;
+    shared_ptr<ClassDTO> class_ptr = classDAO->getById(code);
+    if(class_ptr != nullptr) {
+        map<string, double> studentGrades = class_ptr->getStudentGrades();
+        double sum = 0;
+        for(const pair<string, double> studentGrade : studentGrades) {
+            sum += studentGrade.second;
+        }
+        double average = sum / studentGrades.size();
+        cout << "A media da turma e: " << average << endl;
     } else {
         cout << "Turma nao encontrada." << endl;
     }

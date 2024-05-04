@@ -53,6 +53,7 @@ public:
     void actionAddStudentToClass();
 
 	void actionReports();
+    void reportAverageGradesOfClass();
 };
 
 
