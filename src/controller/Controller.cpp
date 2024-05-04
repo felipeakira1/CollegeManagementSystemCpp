@@ -12,10 +12,6 @@
 #include <memory>
 #include <map>
 
-#include "../../include/database/College.h"
-#include "../../include/dto/ClassDTO.h"
-#include "../../include/dto/StudentDTO.h"
-#include "../../include/dto/TeacherDTO.h"
 #include "../../include/menu/Menu.h"
 #include "../../include/utils/Utils.h"
 
@@ -65,7 +61,6 @@ void Controller::actionInsertStudent()
 
 	shared_ptr<StudentDTO> student = make_shared<StudentDTO>(name, age, phone, ra, course);
 	studentDAO->add(student);
-	return;
 }
 
 void Controller::actionGetAllStudents() {
@@ -125,7 +120,6 @@ void Controller::actionInsertTeacher()
 
 	shared_ptr<TeacherDTO> teacher = make_shared<TeacherDTO>(name, age, phone, id, salary);
 	teacherDAO->add(teacher);
-	return;
 }
 
 void Controller::actionGetAllTeachers()
@@ -134,7 +128,7 @@ void Controller::actionGetAllTeachers()
     if (teachers.empty()) {
         cout << "Nenhum professor encontrado." << endl;
     } else {
-        for (const shared_ptr<TeacherDTO> teacher_ptr: teachers) {
+        for (const shared_ptr<TeacherDTO>& teacher_ptr: teachers) {
 			cout << teacher_ptr << endl;
         }
     }
@@ -197,10 +191,10 @@ void Controller::actionGetAllClasses()
 	    if (classes.empty()) {
 	        cout << "Nenhuma turma encontrada." << endl;
 	    } else {
-	        for (auto it = classes.begin(); it != classes.end(); it++) {
-	        	shared_ptr<ClassDTO> classDTO = *it;
-				cout << classDTO << endl;
-	        }
+            for(const shared_ptr<ClassDTO>& class_ptr : classes)
+            {
+                cout << class_ptr << endl;
+            }
 	    }
 }
 
@@ -217,7 +211,7 @@ void Controller::actionGetClassByCode()
 		cout << class_ptr << endl;
         cout << "Professor: " << teacher_ptr->getName() << endl;
         cout << "Estudantes: " << endl;
-        for(const pair<const string, double> student : class_ptr->getStudentGrades())
+        for(const pair<const string, double>& student : class_ptr->getStudentGrades())
         {
             cout << studentDAO->getById(student.first) << endl;
         }
@@ -234,7 +228,7 @@ void Controller::actionAddTeacherToClass()
     getline(cin, classCode);
     shared_ptr<ClassDTO> class_ptr = classDAO->getById(classCode);
     if(class_ptr != nullptr) {
-        if(class_ptr->getTeacherId() == "")
+        if(class_ptr->getTeacherId().empty())
         {
             string teacherId;
             cout << "Digite o id do professor: ";
