@@ -265,9 +265,10 @@ void Controller::actionAddStudentToClass() {
             double grade;
             cout << "Digite a nota do estudante: ";
             cin >> grade;
-            class_ptr->addStudent(student_ptr->getRa(), grade);
             // adicionar estudante ao mapa de estudantes
+            class_ptr->addStudent(student_ptr->getRa(), grade);
             // adicionar turma ao vetor de turmas de determinado estudante
+            student_ptr->addClass(class_ptr->getCode());
         } else {
             cout << "Estudante não foi encontrado. " << endl;
         }

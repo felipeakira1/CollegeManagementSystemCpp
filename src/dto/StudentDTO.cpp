@@ -38,3 +38,15 @@ ostream &operator<<(ostream &os, const shared_ptr<StudentDTO> &dto) {
        << "]";
     return os;
 }
+
+void StudentDTO::addClass(const string &code) {
+    classes.push_back(code);
+}
+
+const vector<string> &StudentDTO::getClasses() const {
+    return classes;
+}
+
+void StudentDTO::setClasses(const vector<string> &classes) {
+    StudentDTO::classes = classes;
+}

@@ -11,6 +11,7 @@
 #include <string>
 #include <memory>
 #include <ostream>
+#include <vector>
 #include "Person.h"
 using namespace std;
 
@@ -23,10 +24,14 @@ public:
 	const string& getRa() const;
 	void setRa(const string &ra);
     friend ostream &operator<<(ostream &os, const shared_ptr<StudentDTO> &dto);
+    void addClass(const string &code);
+    const vector<string> &getClasses() const;
+    void setClasses(const vector<string> &classes);
 
 private:
 	string course;
 	string ra;
+    vector<string> classes;
 };
 
 
