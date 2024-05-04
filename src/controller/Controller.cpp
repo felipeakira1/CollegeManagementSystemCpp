@@ -210,9 +210,16 @@ void Controller::actionGetClassByCode()
 	cout << "Digite o codigo da disciplina: ";
 	getline(cin, code);
 	shared_ptr<ClassDTO> class_ptr = classDAO->getById(code);
+    shared_ptr<TeacherDTO> teacher_ptr = teacherDAO->getById(class_ptr->getTeacherId());
 	if(class_ptr != nullptr)
 	{
 		cout << class_ptr << endl;
+        cout << "Professor: " << teacher_ptr->getName();
+        cout << "Estudantes: " << endl;
+        for(const pair<const string, double> student : class_ptr->getStudentGrades())
+        {
+            cout << studentDAO->getById(student.first) << endl;
+        }
 	} else {
 		cout << "Classe nao encontrada!" << endl;
 	}
