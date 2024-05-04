@@ -16,6 +16,7 @@
 
 #include "Semester.h"
 #include "Subject.h"
+#include "StudentDTO.h"
 
 using namespace std;
 
@@ -26,16 +27,14 @@ public:
 
 private:
 	string teacherId;
-    vector<string> studentsRas;
     map<string, double> studentGrades;
 
 public:
     const string &getTeacherId() const;
     void setTeacherId(const string &teacherId);
-    const vector<string> &getStudentsRas() const;
-    void setStudentsRas(const vector<string> &studentsRas);
     const map<string, double> &getStudentGrades() const;
-    void setStudentGrades(const map<string, double> &studentGrades);
+//    void setStudentGrades(const map<shared_ptr<StudentDTO>, double> &studentGrade);
+    void addStudent(const string &studentRa, double grade);
     friend ostream& operator<<(ostream& os, const shared_ptr<ClassDTO> &classDto);
 };
 

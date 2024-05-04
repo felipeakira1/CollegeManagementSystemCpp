@@ -21,20 +21,17 @@ void ClassDTO::setTeacherId(const string &teacherId) {
     ClassDTO::teacherId = teacherId;
 }
 
-const vector<string> &ClassDTO::getStudentsRas() const {
-    return studentsRas;
-}
-
-void ClassDTO::setStudentsRas(const vector<string> &studentsRas) {
-    ClassDTO::studentsRas = studentsRas;
-}
-
 const map<string, double> &ClassDTO::getStudentGrades() const {
     return studentGrades;
 }
 
-void ClassDTO::setStudentGrades(const map<string, double> &studentGrades) {
-    ClassDTO::studentGrades = studentGrades;
+//void ClassDTO::setStudentGrades(const map<shared_ptr<StudentDTO>, double> &studentGrade) {
+//    ClassDTO::studentGrades = studentGrade;
+//}
+
+void ClassDTO::addStudent(const string &studentRa, double grade)
+{
+    studentGrades.insert(make_pair(studentRa, grade));
 }
 
 ostream& operator<<(ostream& os, const shared_ptr<ClassDTO> &classDTO)
@@ -45,6 +42,6 @@ ostream& operator<<(ostream& os, const shared_ptr<ClassDTO> &classDTO)
         << ", Ano: " << classDTO->getYear()
         << ", Semestre: " << classDTO->getSemesterNumber()
         << ", Professor: " << classDTO->getSemesterNumber()
-        << "]" << endl;
+        << "]";
     return os;
 }

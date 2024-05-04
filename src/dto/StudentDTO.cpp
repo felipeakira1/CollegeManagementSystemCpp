@@ -7,8 +7,8 @@
 
 #include "../../include/dto/StudentDTO.h"
 
-StudentDTO::StudentDTO(string &name, int age, string &phone, string &ra,
-		string &course) :
+StudentDTO::StudentDTO(const string &name, int age, const string &phone, const string &ra,
+                       const string &course) :
 		Person(name, age, phone), ra(ra), course(course) {
 }
 

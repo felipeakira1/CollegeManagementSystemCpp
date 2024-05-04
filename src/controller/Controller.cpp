@@ -9,7 +9,7 @@
 
 #include <exception>
 #include <iostream>
-#include <iterator>
+#include <memory>
 #include <map>
 
 #include "../../include/database/College.h"
@@ -23,8 +23,9 @@ Controller::Controller() {
 	studentDAO = make_unique<StudentDAO>();
 	teacherDAO = make_unique<TeacherDAO>();
 	classDAO = make_unique<ClassDAO>();
-	//studentDAO->add(make_shared<StudentDTO>("Felipe Akira Nozaki", 20, "(14) 997080902", 172885, "Sistemas de Informação"));
-	//teacherDAO->add(make_shared<TeacherDTO>("Juan Salamanca", 40, "(11) 1111111", 1, 5000));
+
+    studentDAO->add(make_shared<StudentDTO>("Felipe Akira Nozaki", 20, "(14) 997080902", "172885", "Sistemas de Informação"));
+	teacherDAO->add(make_shared<TeacherDTO>("Juan Salamanca", 40, "(11) 1111111", "1", 5000));
 }
 
 Controller::~Controller() {}
@@ -156,7 +157,7 @@ void Controller::actionGetTeacherById()
 void Controller::actionClasses()
 {
 	vector<string> menuTeachers{"Inserir turma", "Visualizar todas as turmas", "Pesquisar turma por codigo", "Adicionar professor a uma turma", "Adicionar estudante a uma turma", "Voltar ao menu principal"};
-	vector<void (Controller::*)()> functions{&Controller::actionInsertClass, &Controller::actionGetAllClasses, &Controller::actionGetClassByCode, &Controller::actionAddTeacherToClass};
+	vector<void (Controller::*)()> functions{&Controller::actionInsertClass, &Controller::actionGetAllClasses, &Controller::actionGetClassByCode, &Controller::actionAddTeacherToClass, &Controller::actionAddStudentToClass};
 	launchActions("Menu turmas", menuTeachers, functions);
 }
 
@@ -214,7 +215,7 @@ void Controller::actionGetClassByCode()
 	if(class_ptr != nullptr)
 	{
 		cout << class_ptr << endl;
-        cout << "Professor: " << teacher_ptr->getName();
+        cout << "Professor: " << teacher_ptr->getName() << endl;
         cout << "Estudantes: " << endl;
         for(const pair<const string, double> student : class_ptr->getStudentGrades())
         {
@@ -243,9 +244,38 @@ void Controller::actionAddTeacherToClass()
                 cout << teacher_ptr << endl;
                 class_ptr->setTeacherId(teacherId);
                 cout << "Professor adicionado com sucesso." << endl;
+            } else {
+                cout << "Professor nao encontrado." << endl;
             }
         } else {
             cout << "Turma já possui professor." << endl;
+        }
+    } else {
+        cout << "Turma nao encontrada." << endl;
+    }
+}
+
+void Controller::actionAddStudentToClass() {
+    cin.ignore();
+    string classCode;
+    cout << "Digite o codigo da turma: ";
+    getline(cin, classCode);
+    shared_ptr<ClassDTO> class_ptr = classDAO->getById(classCode);
+    if(class_ptr != nullptr) {
+        string studentRa;
+        cout << "Digite o RA do estudante: ";
+        getline(cin, studentRa);
+        shared_ptr<StudentDTO> student_ptr = studentDAO->getById((studentRa));
+        if(student_ptr != nullptr) {
+            // verificar se student_ptr já não está presente no mapa
+            double grade;
+            cout << "Digite a nota do estudante: ";
+            cin >> grade;
+            class_ptr->addStudent(student_ptr->getRa(), grade);
+            // adicionar estudante ao mapa de estudantes
+            // adicionar turma ao vetor de turmas de determinado estudante
+        } else {
+            cout << "Estudante não foi encontrado. " << endl;
         }
     } else {
         cout << "Turma nao encontrada." << endl;

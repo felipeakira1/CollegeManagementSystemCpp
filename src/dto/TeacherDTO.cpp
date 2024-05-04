@@ -7,7 +7,7 @@
 
 #include "../../include/dto/TeacherDTO.h"
 
-TeacherDTO::TeacherDTO(string& name, int age, string& phone, string& id, float salary) : Person(name, age, phone), id(id), salary(salary) {}
+TeacherDTO::TeacherDTO(const string& name, int age, const string& phone, const string& id, float salary) : Person(name, age, phone), id(id), salary(salary) {}
 
 string& TeacherDTO::getId()
 {

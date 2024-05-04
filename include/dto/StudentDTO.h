@@ -17,7 +17,7 @@ using namespace std;
 class StudentDTO : public Person
 {
 public:
-	StudentDTO(string& name, int age, string& phone, string& ra, string& course);
+	StudentDTO(const string &name, int age, const string &phone, const string &ra, const string &course);
 	const string& getCourse() const;
 	void setCourse(const string &course);
 	const string& getRa() const;
