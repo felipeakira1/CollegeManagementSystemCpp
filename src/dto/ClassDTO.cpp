@@ -37,5 +37,14 @@ void ClassDTO::setStudentGrades(const map<string, double> &studentGrades) {
     ClassDTO::studentGrades = studentGrades;
 }
 
-
-
+ostream& operator<<(ostream& os, const shared_ptr<ClassDTO> &classDTO)
+{
+    os << "[Codigo: " << classDTO->getCode()
+        << ", Nome: " << classDTO->getName()
+        << ", Ementa: " << classDTO->getSyllabus()
+        << ", Ano: " << classDTO->getYear()
+        << ", Semestre: " << classDTO->getSemesterNumber()
+        << ", Professor: " << classDTO->getSemesterNumber()
+        << "]" << endl;
+    return os;
+}

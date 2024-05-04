@@ -10,6 +10,7 @@
 
 #include <string>
 #include <memory>
+#include <ostream>
 #include "Person.h"
 using namespace std;
 
@@ -21,6 +22,7 @@ public:
 	void setCourse(const string &course);
 	const string& getRa() const;
 	void setRa(const string &ra);
+    friend ostream &operator<<(ostream &os, const shared_ptr<StudentDTO> &dto);
 
 private:
 	string course;

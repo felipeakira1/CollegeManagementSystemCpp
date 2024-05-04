@@ -28,3 +28,13 @@ const string& StudentDTO::getRa() const {
 void StudentDTO::setRa(const string &ra) {
 	this->ra = ra;
 }
+
+ostream &operator<<(ostream &os, const shared_ptr<StudentDTO> &dto) {
+    os << "[RA: " << dto->getRa()
+       << ", Nome: " << dto->getName()
+       << ", Curso: " << dto->getCourse()
+       << ", Idade: " << dto->getAge()
+       << ", Telefone: " << dto->getPhone()
+       << "]";
+    return os;
+}

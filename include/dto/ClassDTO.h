@@ -11,6 +11,8 @@
 #include <map>
 #include <string>
 #include <vector>
+#include <memory>
+#include <iostream>
 
 #include "Semester.h"
 #include "Subject.h"
@@ -34,6 +36,7 @@ public:
     void setStudentsRas(const vector<string> &studentsRas);
     const map<string, double> &getStudentGrades() const;
     void setStudentGrades(const map<string, double> &studentGrades);
+    friend ostream& operator<<(ostream& os, const shared_ptr<ClassDTO> &classDto);
 };
 
 #endif
