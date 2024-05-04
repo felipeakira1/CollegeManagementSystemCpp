@@ -1,0 +1,24 @@
+### CMake ###
+# Diretório de build do CMake
+cmake-build*/
+
+# Arquivos gerados pelo CMake
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Testing/
+Makefile
+cmake_install.cmake
+build.ninja
+ninja.build
+
+# Não ignore CMakeLists.txt
+!CMakeLists.txt
+!**/CMakeLists.txt
+# Não ignore arquivos de configuração de módulo CMake
+!**/*.cmake
+
+### JetBrains ###
+.idea/
+*.iml
+*.iws
