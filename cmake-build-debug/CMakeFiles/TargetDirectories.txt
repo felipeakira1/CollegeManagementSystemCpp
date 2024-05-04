@@ -1,0 +1,3 @@
+C:/Users/Felipe/CLionProjects/CollegeManagementSystemCpp/cmake-build-debug/CMakeFiles/CollegeManagementSystemCpp.dir
+C:/Users/Felipe/CLionProjects/CollegeManagementSystemCpp/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Felipe/CLionProjects/CollegeManagementSystemCpp/cmake-build-debug/CMakeFiles/rebuild_cache.dir
