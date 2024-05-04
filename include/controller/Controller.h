@@ -50,6 +50,7 @@ public:
 	void actionGetAllClasses();
 	void actionGetClassByCode();
 	void actionAddTeacherToClass();
+    void actionAddStudentToClass();
 
 	void actionReports();
 };

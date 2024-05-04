@@ -7,7 +7,7 @@
 
 #include "../../include/dto/TeacherDTO.h"
 
-TeacherDTO::TeacherDTO(string& name, int age, string& phone, string& id, float salary) : Person(name, age, phone), id(id), salary(salary) {}
+TeacherDTO::TeacherDTO(const string& name, int age, const string& phone, const string& id, float salary) : Person(name, age, phone), id(id), salary(salary) {}
 
 string& TeacherDTO::getId()
 {
@@ -25,4 +25,14 @@ float TeacherDTO::getSalary() const {
 
 void TeacherDTO::setSalary(float salary) {
 	this->salary = salary;
+}
+
+ostream& operator<<(ostream& os, const shared_ptr<TeacherDTO> teacher) {
+    os << "[ID: " << teacher->getId()
+       << ", Nome: " << teacher->getName()
+       << ", Idade: " << teacher->getAge()
+       << ", Telefone: " << teacher->getPhone()
+       << ", Salario: " << teacher->getSalary()
+       << "]";
+    return os;
 }

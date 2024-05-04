@@ -13,7 +13,7 @@ using namespace std;
 
 class Person {
 public:
-	Person(string& name, int age, string& phone);
+	Person(const string& name, int age, const string& phone);
 	virtual ~Person();
 	int getAge() const;
 	void setAge(int age);
@@ -28,4 +28,4 @@ protected:
 	string phone;
 };
 
-#endif /* INCLUDE_DTO_PERSON_H_ */
+#endif

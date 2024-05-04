@@ -9,7 +9,7 @@
 
 #include <exception>
 #include <iostream>
-#include <iterator>
+#include <memory>
 #include <map>
 
 #include "../../include/database/College.h"
@@ -23,8 +23,9 @@ Controller::Controller() {
 	studentDAO = make_unique<StudentDAO>();
 	teacherDAO = make_unique<TeacherDAO>();
 	classDAO = make_unique<ClassDAO>();
-	//studentDAO->add(make_shared<StudentDTO>("Felipe Akira Nozaki", 20, "(14) 997080902", 172885, "Sistemas de Informação"));
-	//teacherDAO->add(make_shared<TeacherDTO>("Juan Salamanca", 40, "(11) 1111111", 1, 5000));
+
+    studentDAO->add(make_shared<StudentDTO>("Felipe Akira Nozaki", 20, "(14) 997080902", "172885", "Sistemas de Informação"));
+	teacherDAO->add(make_shared<TeacherDTO>("Juan Salamanca", 40, "(11) 1111111", "1", 5000));
 }
 
 Controller::~Controller() {}
@@ -73,13 +74,9 @@ void Controller::actionGetAllStudents() {
     if (students.empty()) {
         cout << "Nenhum estudante encontrado." << endl;
     } else {
-    	for(const auto& student : students)
+    	for(const shared_ptr<StudentDTO> &student_ptr : students)
     	{
-    		cout << "[RA: " << student->getRa()
-				 << ", Nome: " << student->getName()
-				 << ", Curso: " << student->getCourse()
-				 << ", Idade: " << student->getAge()
-				 << "]" << endl;
+    		cout << student_ptr << endl;
     	}
     }
 }
@@ -90,25 +87,19 @@ void Controller::actionGetStudentByRa() {
 	cout << "Digite o RA do estudante: ";
 	getline(cin, ra);
 
-	shared_ptr<StudentDTO> student = studentDAO->getById(ra);
-	if(student != nullptr){
-		cout << "[RA: " << student->getRa()
-			 << ", Nome: " << student->getName()
-			 << ", Curso: " << student->getCourse()
-			 << ", Idade: " << student->getAge()
-			 << ", Telefone: " << student->getPhone()
-			 << "]" << endl;
+	shared_ptr<StudentDTO> student_ptr = studentDAO->getById(ra);
+	if(student_ptr != nullptr){
+		cout << student_ptr << endl;
 	} else {
 		cout << "Estudante nao encontrado." << endl;
 	}
 }
 
-
 void Controller::actionTeachers()
 {
 	vector<string> menuTeachers{"Inserir professor", "Visualizar todos os professores", "Pesquisar professor por ID", "Mostrar disciplinas ministradas por um professor", "Alterar professor", "Remover professor", "Voltar ao menu principal"};
 	vector<void (Controller::*)()> functions{&Controller::actionInsertTeacher, &Controller::actionGetAllTeachers, &Controller::actionGetTeacherById, &Controller::actionToDo};
-	launchActions("Menu Estudantes", menuTeachers, functions);
+	launchActions("Menu Professores", menuTeachers, functions);
 }
 
 void Controller::actionInsertTeacher()
@@ -143,13 +134,8 @@ void Controller::actionGetAllTeachers()
     if (teachers.empty()) {
         cout << "Nenhum professor encontrado." << endl;
     } else {
-        for (shared_ptr<TeacherDTO> teacher : teachers) {
-			cout << "[ID: " << teacher->getId()
-				 << ", Nome: " << teacher->getName()
-				 << ", Idade: " << teacher->getAge()
-				 << ", Telefone: " << teacher->getPhone()
-				 << ", Salario: " << teacher->getSalary()
-				 << "]" << endl;
+        for (const shared_ptr<TeacherDTO> teacher_ptr: teachers) {
+			cout << teacher_ptr << endl;
         }
     }
 }
@@ -162,12 +148,7 @@ void Controller::actionGetTeacherById()
 	getline(cin, id);
 	shared_ptr<TeacherDTO> teacher_ptr = teacherDAO->getById(id);
 	if(teacher_ptr != nullptr) {
-		cout << "[ID: " << teacher_ptr->getId()
-			 << ", Nome: " << teacher_ptr->getName()
-			 << ", Idade: " << teacher_ptr->getAge()
-			 << ", Telefone: " << teacher_ptr->getPhone()
-			 << ", Salario: " << teacher_ptr->getSalary()
-			 << "]" << endl;
+		cout << teacher_ptr << endl;
 	} else {
 		cout << "Professor nao encontrado!" << endl;
 	}
@@ -176,7 +157,7 @@ void Controller::actionGetTeacherById()
 void Controller::actionClasses()
 {
 	vector<string> menuTeachers{"Inserir turma", "Visualizar todas as turmas", "Pesquisar turma por codigo", "Adicionar professor a uma turma", "Adicionar estudante a uma turma", "Voltar ao menu principal"};
-	vector<void (Controller::*)()> functions{&Controller::actionInsertClass, &Controller::actionGetAllClasses, &Controller::actionGetClassByCode, &Controller::actionAddTeacherToClass};
+	vector<void (Controller::*)()> functions{&Controller::actionInsertClass, &Controller::actionGetAllClasses, &Controller::actionGetClassByCode, &Controller::actionAddTeacherToClass, &Controller::actionAddStudentToClass};
 	launchActions("Menu turmas", menuTeachers, functions);
 }
 
@@ -218,12 +199,7 @@ void Controller::actionGetAllClasses()
 	    } else {
 	        for (auto it = classes.begin(); it != classes.end(); it++) {
 	        	shared_ptr<ClassDTO> classDTO = *it;
-				cout << "[Codigo: " << classDTO->getCode()
-					 << ", Nome: " << classDTO->getName()
-					 << ", Ementa: " << classDTO->getSyllabus()
-					 << ", Ano: " << classDTO->getYear()
-					 << ", Semestre: " << classDTO->getSemesterNumber()
-					 << "]" << endl;
+				cout << classDTO << endl;
 	        }
 	    }
 }
@@ -235,14 +211,16 @@ void Controller::actionGetClassByCode()
 	cout << "Digite o codigo da disciplina: ";
 	getline(cin, code);
 	shared_ptr<ClassDTO> class_ptr = classDAO->getById(code);
+    shared_ptr<TeacherDTO> teacher_ptr = teacherDAO->getById(class_ptr->getTeacherId());
 	if(class_ptr != nullptr)
 	{
-		cout << "[Codigo: " << class_ptr->getCode()
-			 << ", Nome: " << class_ptr->getName()
-			 << ", Ementa: " << class_ptr->getSyllabus()
-			 << ", Ano: " << class_ptr->getYear()
-			 << ", Semestre: " << class_ptr->getSemesterNumber()
-			 << "]" << endl;
+		cout << class_ptr << endl;
+        cout << "Professor: " << teacher_ptr->getName() << endl;
+        cout << "Estudantes: " << endl;
+        for(const pair<const string, double> student : class_ptr->getStudentGrades())
+        {
+            cout << studentDAO->getById(student.first) << endl;
+        }
 	} else {
 		cout << "Classe nao encontrada!" << endl;
 	}
@@ -250,15 +228,58 @@ void Controller::actionGetClassByCode()
 
 void Controller::actionAddTeacherToClass()
 {
-	cin.ignore();
-	string classCode;
-	cout << "Digite o codigo da turma: ";
-	getline(cin, classCode);
+    cin.ignore();
+    string classCode;
+    cout << "Digite o codigo da turma: ";
+    getline(cin, classCode);
+    shared_ptr<ClassDTO> class_ptr = classDAO->getById(classCode);
+    if(class_ptr != nullptr) {
+        if(class_ptr->getTeacherId() == "")
+        {
+            string teacherId;
+            cout << "Digite o id do professor: ";
+            getline(cin, teacherId);
+            shared_ptr<TeacherDTO> teacher_ptr = teacherDAO->getById(teacherId);
+            if(teacher_ptr != nullptr) {
+                cout << teacher_ptr << endl;
+                class_ptr->setTeacherId(teacherId);
+                cout << "Professor adicionado com sucesso." << endl;
+            } else {
+                cout << "Professor nao encontrado." << endl;
+            }
+        } else {
+            cout << "Turma já possui professor." << endl;
+        }
+    } else {
+        cout << "Turma nao encontrada." << endl;
+    }
+}
 
-	//verificar se turma existe e se nao ha nenhum professor
-	{
-
-	}
+void Controller::actionAddStudentToClass() {
+    cin.ignore();
+    string classCode;
+    cout << "Digite o codigo da turma: ";
+    getline(cin, classCode);
+    shared_ptr<ClassDTO> class_ptr = classDAO->getById(classCode);
+    if(class_ptr != nullptr) {
+        string studentRa;
+        cout << "Digite o RA do estudante: ";
+        getline(cin, studentRa);
+        shared_ptr<StudentDTO> student_ptr = studentDAO->getById((studentRa));
+        if(student_ptr != nullptr) {
+            // verificar se student_ptr já não está presente no mapa
+            double grade;
+            cout << "Digite a nota do estudante: ";
+            cin >> grade;
+            class_ptr->addStudent(student_ptr->getRa(), grade);
+            // adicionar estudante ao mapa de estudantes
+            // adicionar turma ao vetor de turmas de determinado estudante
+        } else {
+            cout << "Estudante não foi encontrado. " << endl;
+        }
+    } else {
+        cout << "Turma nao encontrada." << endl;
+    }
 }
 
 void Controller::launchActions(string title, vector<string> menuItens,

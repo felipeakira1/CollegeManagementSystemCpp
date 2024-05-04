@@ -7,8 +7,8 @@
 
 #include "../../include/dto/StudentDTO.h"
 
-StudentDTO::StudentDTO(string &name, int age, string &phone, string &ra,
-		string &course) :
+StudentDTO::StudentDTO(const string &name, int age, const string &phone, const string &ra,
+                       const string &course) :
 		Person(name, age, phone), ra(ra), course(course) {
 }
 
@@ -27,4 +27,14 @@ const string& StudentDTO::getRa() const {
 
 void StudentDTO::setRa(const string &ra) {
 	this->ra = ra;
+}
+
+ostream &operator<<(ostream &os, const shared_ptr<StudentDTO> &dto) {
+    os << "[RA: " << dto->getRa()
+       << ", Nome: " << dto->getName()
+       << ", Curso: " << dto->getCourse()
+       << ", Idade: " << dto->getAge()
+       << ", Telefone: " << dto->getPhone()
+       << "]";
+    return os;
 }

@@ -8,7 +8,7 @@
 #include "../../include/dto/Person.h"
 
 
-Person::Person(string& name, int age, string& phone) : name(name), age(age), phone(phone) {}
+Person::Person(const string& name, int age, const string& phone) : name(name), age(age), phone(phone) {}
 
 Person::~Person() {
 	// TODO Auto-generated destructor stub
