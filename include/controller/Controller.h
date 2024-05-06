@@ -56,6 +56,7 @@ public:
     void reportClassesOfStudent();
     void reportStudentsOfClass();
     void reportAverageGradesOfClass();
+    void reportBestGradeOfClass();
 };
 
 

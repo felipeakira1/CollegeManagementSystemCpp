@@ -335,6 +335,24 @@ void Controller::reportAverageGradesOfClass() {
     }
 }
 
+void Controller::reportBestGradeOfClass() {
+    string code;
+    cout << "Digite o codigo da turma: ";
+    cin >> code;
+    shared_ptr<ClassDTO> class_ptr = classDAO->getById(code);
+    if(class_ptr != nullptr) {
+        map<string, double> studentGrades = class_ptr->getStudentGrades();
+        double sum = 0;
+        for(const pair<string, double> studentGrade : studentGrades) {
+            sum += studentGrade.second;
+        }
+        double average = sum / studentGrades.size();
+        cout << "A media da turma e: " << average << endl;
+    } else {
+        cout << "Turma nao encontrada." << endl;
+    }
+}
+
 
 void Controller::launchActions(string title, vector<string> menuItens,
 		vector<void (Controller::*)()> functions) {
